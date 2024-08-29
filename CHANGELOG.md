@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Extending the adopted spec, each change should have a link to its corresponding pull request appended.
 
+## [33.0.0](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/compare/v32.0.4...v33.0.0) (2024-08-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/project-factory/google to v16 ([#2057](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/issues/2057))
+
+### Features
+
+* support reservation affinity ([#2010](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/issues/2010)) ([7cc0626](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/commit/7cc06267bb8654194eb0031772b0345863030457))
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform terraform-google-modules/project-factory/google to v16 ([#2057](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/issues/2057)) ([8e53122](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/commit/8e53122ccc78e9301c5c9041d195b0c0e3754b26))
+
 ## [32.0.4](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/compare/v32.0.3...v32.0.4) (2024-08-26)
 
 
