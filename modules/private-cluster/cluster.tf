@@ -33,6 +33,9 @@ resource "google_container_cluster" "primary" {
   network             = "projects/${local.network_project_id}/global/networks/${var.network}"
   deletion_protection = var.deletion_protection
 
+  # AEG - try hardcoding first
+  enable_multi_networking = true
+
   dynamic "network_policy" {
     for_each = local.cluster_network_policy
 
@@ -574,6 +577,7 @@ resource "google_container_node_pool" "pools" {
     content {
       pod_range            = lookup(network_config.value, "pod_range", null)
       enable_private_nodes = var.enable_private_nodes
+      # AEG - I think the additional_node_network_config goes here!
     }
   }
 
