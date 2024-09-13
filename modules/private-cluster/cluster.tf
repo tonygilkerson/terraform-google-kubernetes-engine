@@ -595,7 +595,7 @@ resource "google_container_node_pool" "pools" {
     additional_pod_network_configs {
       subnetwork = "FAKE-additional-pod-subnet"
       secondary_pod_range = "FAKE-additional-pod-secondary_pod_range"
-      max_pods_per_node = "FAKE-additional-pod-max-per-node"
+      max_pods_per_node = "32"
     }
   }
 
