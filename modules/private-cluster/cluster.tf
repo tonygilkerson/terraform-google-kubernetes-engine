@@ -578,6 +578,12 @@ resource "google_container_node_pool" "pools" {
       pod_range            = lookup(network_config.value, "pod_range", null)
       enable_private_nodes = var.enable_private_nodes
       # AEG - I think the additional_node_network_config goes here!
+      #       Start with hardcode
+      additional_node_network_configs {
+        network = "FAKE-VPC-NETWORK-NAME"
+        subnetwork = "FAKE-SUBNET-NAME"
+      }
+
     }
   }
 
