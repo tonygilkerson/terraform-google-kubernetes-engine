@@ -596,17 +596,6 @@ resource "google_container_node_pool" "pools" {
     }
   }
 
-  # network_config {
-  #   additional_node_network_configs {
-  #     network    = var.additional_node_network
-  #     subnetwork = var.additional_node_subnetwork
-  #   }
-  #   additional_pod_network_configs {
-  #     subnetwork          = var.additional_pod_subnetwork
-  #     secondary_pod_range = var.additional_pod_secondary_pod_range
-  #     max_pods_per_node   = var.additional_pod_max_pods_per_node
-  #   }
-  # }
   # AFRL (end) - Add support for multi networking
 
   
