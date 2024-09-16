@@ -33,9 +33,9 @@ resource "google_container_cluster" "primary" {
   network             = "projects/${local.network_project_id}/global/networks/${var.network}"
   deletion_protection = var.deletion_protection
 
-  # AEG - try hardcoding first
-  enable_multi_networking = true
-
+  # AFRL (start) - Add support for multi networking
+  enable_multi_networking = var.enable_multi_networking
+  # AFRL (start) - Add support for multi networking
   dynamic "network_policy" {
     for_each = local.cluster_network_policy
 
@@ -577,27 +577,22 @@ resource "google_container_node_pool" "pools" {
     content {
       pod_range            = lookup(network_config.value, "pod_range", null)
       enable_private_nodes = var.enable_private_nodes
-      # AEG - I think the additional_node_network_config goes here!
-      # #       Start with hardcode
-      # additional_node_network_configs {
-      #   network = "FAKE-VPC-NETWORK-NAME"
-      #   subnetwork = "FAKE-SUBNET-NAME"
-      # }
-
     }
   }
   
+  # AFRL (start) - Add support for multi networking
   network_config {
     additional_node_network_configs {
-      network = "FAKE-additional-node-network"
-      subnetwork = "FAKE-additional-node-subnet"
+      network    = var.additional_node_network_configs.network
+      subnetwork = var.additional_node_network_configs.subnetwork
     }
     additional_pod_network_configs {
-      subnetwork = "FAKE-additional-pod-subnet"
-      secondary_pod_range = "FAKE-additional-pod-secondary_pod_range"
-      max_pods_per_node = "32"
+      subnetwork          = var.additional_pod_network_configs.subnetwork
+      secondary_pod_range = var.additional_pod_network_configs.secondary_pod_range
+      max_pods_per_node   = var.additional_pod_network_configs.max_pods_per_node
     }
   }
+  # AFRL (start) - Add support for multi networking
 
   
   management {
