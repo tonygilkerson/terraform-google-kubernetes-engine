@@ -581,8 +581,6 @@ resource "google_container_node_pool" "pools" {
   }
   
   # AFRL (start) - Add support for multi networking
-  for_each = { for k, v in var.some_map : k => v if var.enable_multi_networking }
-
   dynamic "network_config" {
     for_each = var.enable_multi_networking ? [1] : []
     content {
