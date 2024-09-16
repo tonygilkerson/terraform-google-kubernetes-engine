@@ -585,13 +585,13 @@ resource "google_container_node_pool" "pools" {
     for_each = var.enable_multi_networking ? [1] : []
     content {
       additional_node_network_configs {
-        network    = var.additional_node_network_configs.network
-        subnetwork = var.additional_node_network_configs.subnetwork
+        network    = var.additional_node_network
+        subnetwork = var.additional_node_subnetwork
       }
       additional_pod_network_configs {
-        subnetwork          = var.additional_pod_network_configs.subnetwork
-        secondary_pod_range = var.additional_pod_network_configs.secondary_pod_range
-        max_pods_per_node   = var.additional_pod_network_configs.max_pods_per_node
+        subnetwork          = var.additional_pod_subnetwork
+        secondary_pod_range = var.additional_pod_secondary_pod_range
+        max_pods_per_node   = var.additional_pod_max_pods_per_node
       }
     }
   }
@@ -606,7 +606,7 @@ resource "google_container_node_pool" "pools" {
   #     max_pods_per_node   = var.additional_pod_network_configs.max_pods_per_node
   #   }
   # }
-  # AFRL (start) - Add support for multi networking
+  # AFRL (end) - Add support for multi networking
 
   
   management {

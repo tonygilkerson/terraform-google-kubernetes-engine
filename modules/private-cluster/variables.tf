@@ -838,33 +838,26 @@ variable "fleet_project" {
 # AFRL (start) - Add support for multi networking
 variable "enable_multi_networking" {
   type        = bool
-  description = "Whether multi-networking is enabled for this cluster."
   default     = false
 }
-
-variable "additional_node_network_configs" {
-  type = object({
-    network    = optional(string)
-    subnetwork = optional(string)
-  })
-  description = "We specify the additional node networks for this node pool using this list. Each node network corresponds to an additional interface."
-  default = {
-    network    = null
-    subnetwork = null
-  }
+variable "additional_node_network" {
+  type        = string
+  default     = null
 }
-
-variable "additional_pod_network_configs" {
-  type = object({
-    subnetwork          = optional(string)
-    secondary_pod_range = optional(string)
-    max_pods_per_node   = optional(number)
-  })
-  description = "We specify the additional node networks for this node pool using this list. Each node network corresponds to an additional interface."
-  default = {
-    subnetwork          = null
-    secondary_pod_range = null
-    max_pods_per_node   = null
-  }
+variable "additional_node_subnetwork" {
+  type        = string
+  default     = null
+}
+variable "additional_pod_subnetwork" {
+  type        = string
+  default     = null
+}
+variable "additional_pod_secondary_pod_range" {
+  type        = string
+  default     = null
+}
+variable "additional_pod_max_pods_per_node" {
+  type        = number
+  default     = null
 }
 # AFRL (end)
