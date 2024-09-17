@@ -573,18 +573,17 @@ resource "google_container_node_pool" "pools" {
   }
 
   # AFRL (start) - Add support for multi networking
-  # dynamic "network_config" {
-  #   for_each = length(lookup(each.value, "pod_range", "")) > 0 ? [each.value] : []
-  #   content {
-  #     pod_range            = lookup(network_config.value, "pod_range", null)
-  #     enable_private_nodes = var.enable_private_nodes
-  #   }
-  # }
+  dynamic "network_config" {
+    for_each = length(lookup(each.value, "pod_range", "")) > 0 ? [each.value] : []
+    content {
+      pod_range            = lookup(network_config.value, "pod_range", null)
+      enable_private_nodes = var.enable_private_nodes
+    }
+  }
   
   dynamic "network_config" {
     for_each = var.enable_multi_networking ? [1] : []
     content {
-      # pod_range            = lookup(network_config.value, "pod_range", null)
       enable_private_nodes = var.enable_private_nodes      
       additional_node_network_configs {
         network    = var.additional_node_network
