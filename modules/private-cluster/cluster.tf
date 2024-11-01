@@ -33,6 +33,9 @@ resource "google_container_cluster" "primary" {
   network             = "projects/${local.network_project_id}/global/networks/${var.network}"
   deletion_protection = var.deletion_protection
 
+  # AFRL (start) - Add support for multi networking
+  enable_multi_networking = var.enable_multi_networking
+  # AFRL (end) - Add support for multi networking
   dynamic "network_policy" {
     for_each = local.cluster_network_policy
 
@@ -577,6 +580,25 @@ resource "google_container_node_pool" "pools" {
     }
   }
 
+  # AFRL (start) - Add support for multi networking
+  dynamic "network_config" {
+    for_each = var.enable_multi_networking ? [1] : []
+    content {
+      enable_private_nodes = var.enable_private_nodes      
+      additional_node_network_configs {
+        network    = var.additional_node_network
+        subnetwork = var.additional_node_subnetwork
+      }
+      additional_pod_network_configs {
+        subnetwork          = var.additional_pod_subnetwork
+        secondary_pod_range = var.additional_pod_secondary_pod_range
+        max_pods_per_node   = var.additional_pod_max_pods_per_node
+      }
+    }
+  }
+
+  # AFRL (end) - Add support for multi networking
+  
   management {
     auto_repair  = lookup(each.value, "auto_repair", true)
     auto_upgrade = lookup(each.value, "auto_upgrade", local.default_auto_upgrade)

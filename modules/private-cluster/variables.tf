@@ -830,3 +830,30 @@ variable "fleet_project" {
   type        = string
   default     = null
 }
+
+# AFRL (start) - Add support for multi networking
+variable "enable_multi_networking" {
+  type        = bool
+  default     = false
+}
+variable "additional_node_network" {
+  type        = string
+  default     = null
+}
+variable "additional_node_subnetwork" {
+  type        = string
+  default     = null
+}
+variable "additional_pod_subnetwork" {
+  type        = string
+  default     = null
+}
+variable "additional_pod_secondary_pod_range" {
+  type        = string
+  default     = null
+}
+variable "additional_pod_max_pods_per_node" {
+  type        = number
+  default     = null
+}
+# AFRL (end)
